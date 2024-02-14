@@ -1,0 +1,101 @@
+﻿@model HomeApp.Models.HouseModel;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/home.js"></script>
+<style>
+    .dropdownlist {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -moz-appearance: none;
+        border-radius: 0.25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+</style>
+
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <div class="row justify-content-md-center">
+        <div class="col-md-5">
+
+            @Html.AntiForgeryToken()
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">House Details</div>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.HouseNo)
+                        @Html.TextBoxFor(m => m.HouseNo, "", new
+                        { @class = "form-control", @placeholder = "House No", id = "houseno"})
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Location)
+                        @Html.TextBoxFor(m => m.Location, "", new
+                        { @class = "form-control", @placeholder = "Location", id = "location" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.HouseType)
+                        @Html.TextBoxFor(m => m.HouseType, "", new
+                        { @class = "form-control", @placeholder = "HouseType", id = "housetype"  })
+                        @if (ViewBag.error != null)
+                        {
+                            <span class="badge badge-danger">@ViewBag.error</span>
+                        }
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.muncipality)
+                        @Html.TextBoxFor(m => m.muncipality, new
+                        { @class = "form-control", @placeholder = "muncipality" , id = "muncipality" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.city)
+                        @Html.TextBoxFor(m => m.city, new
+                        { @class = "form-control", @placeholder = "enter city" , id = "city" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Pincode)
+                        @Html.TextBoxFor(m => m.Pincode, new
+                        { @class = "form-control", @placeholder = "enter Pincode" , id = "pin" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Stateid)
+                        @Html.DropDownListFor(model => model.Stateid, (SelectList)ViewBag.statesList, "Select state", new { @class = "dropdownlist", id = "idState",onchange = "StateChange(this);"   })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Districtid)
+                        @Html.DropDownListFor(model => model.Districtid, (SelectList)ViewBag.districtList, "Select District", new { @class = "dropdownlist", id = "idDistrict",onchange = "DistrictChange(this);"   })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.villageid)
+                        @Html.DropDownListFor(model => model.villageid, (SelectList)ViewBag.VillageList, "Select District", new { @class = "dropdownlist", id = "idVillage"   })
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-outline-success" value="Register" onclick="SavehouseDetails();" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
