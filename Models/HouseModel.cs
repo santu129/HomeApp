@@ -11,6 +11,7 @@ namespace HomeApp.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int houseid { get; set; }
         public string HouseNo { get; set; }
+        //
         public string Location { get; set; }
         public string HouseType { get; set; }
         public string muncipality { get; set; }
